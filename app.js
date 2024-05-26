@@ -25,7 +25,7 @@ console.log(inputPeopleTotal.value);
 // set currBillTotal to inputBillTotal.value
 // run update calculator fn
 let tip;
-function handleAddingZero() {
+const handleAddingZero = () => {
     console.log('handle adding zero function says hi!!!');
     let regex = /\.+/g;
     let resultAmt = tip.toString();
@@ -36,13 +36,18 @@ function handleAddingZero() {
         resultAmt.split(' ');
         resultAmt = Array.from(resultAmt);
         console.log(resultAmt);
-        if (resultAmt.length === 4) {
+        let sliceStart = resultAmt.indexOf('.')
+        console.log(sliceStart)
+        resultAmt = resultAmt.slice(sliceStart)
+        console.log(resultAmt)
+        if (resultAmt.length < 3) {
             tip = tip + '0';
             console.log(tip);
-            return tip
+            tipResult.innerText = '$' + tip;
         }
     }
 }
+
 const checkCalculator = () => {
     tip = (parseFloat(currBillTotal) * parseFloat(tipPercentage) / 100);
     tipResult.innerText = '$' + tip;
