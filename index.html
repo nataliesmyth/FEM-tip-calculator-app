@@ -6,6 +6,11 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
   <title>Frontend Mentor | Tip calculator app</title>
 
@@ -31,16 +36,16 @@
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="15">15%</button>
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="25">25%</button>
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="50">50%</button>
-        <input type="text" class="tip-percentage" placeholder="Custom">
+        <input type="text" class="tip-percentage input" id="custom-tip" placeholder="Custom">
         <label class="label" for="numberOfPeople">Number of People</label>
         <input type="number" min="1" step="any" class="input" id="inputNumberOfPeople">
       </form>
         
       <div class="result">
         <div class="text">
-          <p>Tip Amount <span class="span tip-amt">$0.00</span></p>
+          <p>Tip Amount <span class="span tip-amt" id="tipResult">$0.00</span></p>
           <small class="small">/ person</small>
-          <p>Total <span class="span total">$0.00</span></p>
+          <p>Total <span class="span total" id="billResult">$0.00</span></p>
           <small class="small">/ person</small>
         </div>
         

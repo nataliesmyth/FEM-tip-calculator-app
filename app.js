@@ -1,9 +1,14 @@
 const inputBillTotal = document.getElementById('billInput');
 const inputPeopleTotal = document.getElementById('inputNumberOfPeople');
 const buttons = document.querySelectorAll('.tip-percentage-btn');
+const customTip = document.getElementById('custom-tip');
 console.log(buttons);
 let currBillTotal = 0;
 let tipPercentage = 0;
+
+let tipResult = document.getElementById('tipResult');
+let billResult = document.getElementById('billResult');
+console.log(tipResult)
 
 let inputBillActive = false;
 let inputPeopleActive = false;
@@ -19,19 +24,35 @@ console.log(inputPeopleTotal.value);
 // if not equal
 // set currBillTotal to inputBillTotal.value
 // run update calculator fn
+let tip;
+function handleAddingZero() {
+    console.log('handle adding zero function says hi!!!');
+    let regex = /\.+/g;
+    let resultAmt = tip.toString();
+    console.log('resultAmt', resultAmt);
+    console.log(resultAmt.match(regex));
 
-
-const checkCalculator = () => {
-    console.log('updated!');
-    let tip = parseFloat(currBillTotal) * parseFloat(tipPercentage);
-    console.log('typeof tip:', typeof tip)
-    console.log('tip:', tip)
-
-    if (currBillTotal !== inputBillTotal.value) {
-        console.log('calculator needs to be updated!')
-    } else {
-        console.log('calculator is updated!')
+    if (resultAmt.match(regex) !== null) {
+        resultAmt.split(' ');
+        resultAmt = Array.from(resultAmt);
+        console.log(resultAmt);
+        if (resultAmt.length === 4) {
+            tip = tip + '0';
+            console.log(tip);
+            return tip
+        }
     }
+}
+const checkCalculator = () => {
+    tip = (parseFloat(currBillTotal) * parseFloat(tipPercentage) / 100);
+    tipResult.innerText = '$' + tip;
+
+    handleAddingZero();
+    // if (currBillTotal !== inputBillTotal.value) {
+    //     console.log('calculator needs to be updated!')
+    // } else {
+    //     console.log('calculator is updated!')
+    // }
 }
 
 checkCalculator();
@@ -42,15 +63,26 @@ checkCalculator();
 
 function handleTipBtnClick() {
     inputTipActive = true;
-    console.log('clicked!');
+    console.log('tip btn clicked!');
+    checkCalculator();
 }
 
-buttons.forEach((button) => {
-    button.addEventListener('click', handleTipBtnClick);
+// buttons.forEach((button) => {
+    //     button.addEventListener('click', handleTipBtnClick);
+    // });
+    
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            console.log(button.dataset.percent);
+            tipPercentage = button.dataset.percent;
+            console.log('typeof tipPercentage: ',typeof tipPercentage)
+            handleTipBtnClick();
+    });
 });
 
 inputBillTotal.addEventListener('input', () => {
     currBillTotal = inputBillTotal.value;
+    billResult.innerText = '$' + currBillTotal;
     console.log(currBillTotal);
     if (inputBillTotal !== '') {
         inputBillActive = true;
@@ -58,3 +90,5 @@ inputBillTotal.addEventListener('input', () => {
         checkCalculator();
     }
 })
+
+// customTip.addEventListener('input', handleTipBtnClick);
