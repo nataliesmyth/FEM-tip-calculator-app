@@ -5,6 +5,7 @@ const customTip = document.getElementById('custom-tip');
 console.log(buttons);
 let currBillTotal = 0;
 let tipPercentage = 0;
+let tip;
 
 let tipResult = document.getElementById('tipResult');
 let billResult = document.getElementById('billResult');
@@ -16,7 +17,7 @@ let btnActive = false;
 let inputTipActive = false;
 
 console.log(inputBillTotal.value);
-console.log(inputPeopleTotal.value);
+console.log('inputPeopleTotal', inputPeopleTotal.value);
 
 // update bill
 // save inputBillTotal.value to variable currBillTotal
@@ -24,7 +25,6 @@ console.log(inputPeopleTotal.value);
 // if not equal
 // set currBillTotal to inputBillTotal.value
 // run update calculator fn
-let tip;
 const handleAddingZero = () => {
     console.log('handle adding zero function says hi!!!');
     let regex = /\.+/g;
@@ -50,14 +50,13 @@ const handleAddingZero = () => {
 
 const checkCalculator = () => {
     tip = (parseFloat(currBillTotal) * parseFloat(tipPercentage) / 100);
+    console.log(tip)
+    if (inputPeopleTotal.value > 1) {
+        tip = tip / parseFloat(inputPeopleTotal.value);
+    }
     tipResult.innerText = '$' + tip;
 
     handleAddingZero();
-    // if (currBillTotal !== inputBillTotal.value) {
-    //     console.log('calculator needs to be updated!')
-    // } else {
-    //     console.log('calculator is updated!')
-    // }
 }
 
 checkCalculator();
