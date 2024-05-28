@@ -139,6 +139,12 @@ body {
     outline: none;
 }
 
+#billInput {
+    background-image: url(./images/icon-dollar.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
 .input:hover {
     cursor: pointer;
     border-color: hsl(var(--clr-primary));
@@ -162,11 +168,23 @@ body {
     margin: .25em;
 }
 
+.tip-percentage:hover,
+.tip-percentage:focus {
+    background-color: hsl(var(--clr-bg-input));
+    color: hsl(var(--clr-dark-cyan));
+}
+
 #custom-tip {
     background-color: hsl(var(--clr-bg-input));
     color: hsl(var(--clr-dark-cyan));
     margin-block: 0;
     padding: 0 .5em 0 0;
+}
+
+#peopleInput {
+    background-image: url(./images/icon-person.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
 }
 
 .result {
