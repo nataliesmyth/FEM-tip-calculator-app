@@ -26,7 +26,7 @@ let inputPeopleActive = false;
 let btnActive = false;
 let inputTipActive = false;
 
-console.log(typeof parseInt(inputPeopleTotal.value));
+// TODO: fix this function to add .00 to total when necessary
 
 const handleBillResultLength = () => {
     let regex = /\.+/g;
@@ -35,23 +35,21 @@ const handleBillResultLength = () => {
     if (resultAmt.match(regex) !== null) {
         // resultAmt.split(' ');
         resultAmt = Array.from(resultAmt);
-        console.log('resultAmt', resultAmt);
         let decimalPoint = resultAmt.indexOf('.');
         let afterDecimal = resultAmt.slice(decimalPoint);
-        console.log('tip', tip)
-        console.log('afterDecimal', afterDecimal)
         
         if (afterDecimal.length < 3) {
             tip = tip + '0';
             tipResult.innerText = '$' + tip;
-        } 
-        
-        if (resultAmt.length > 5) {
+        } else if (resultAmt.length > 5) {
             const beforeDecimal = resultAmt.slice(0, decimalPoint).join('');
             afterDecimal = afterDecimal.slice(0, 5).join('');
             tip = beforeDecimal + afterDecimal;
             tipResult.innerText = '$' + tip;
         }
+    } else {
+        resultAmt = resultAmt + '.00';
+        tipResult.innerText = '$' + resultAmt;
     }
 }
 
@@ -66,65 +64,61 @@ const checkCalculator = () => {
     handleBillResultLength();
 }
 
-checkCalculator();
 
-function handleTipInput() {
+const handleTipInput = () => {
     inputTipActive = true;
     checkCalculator();
 }
-    
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        tipPercentage = button.dataset.percent;
-        handleTipInput();
-    });
-});
-
 
 const handleBillInput = () => {
+    let regex = /\.+/g;
     currBillTotal = inputBillTotal.value;
-    console.log('currBillTotal: ', currBillTotal)
     billResult.innerText = '$' + currBillTotal;
     if (inputBillTotal !== '') {
         inputBillActive = true;
         inputPeopleActive = true;
-    } else {
-        checkCalculator();
-    }
-}
-
-const handlePeopleInput = () => {
-
-    console.log(inputPeopleTotal.value);
-    currPeopleTotal = inputPeopleTotal.value;
-    console.log('currPeopleTotal: ', currPeopleTotal);
-
-    if (inputPeopleTotal !== '') {
-
-        inputPeopleTotal.innerText = '$' + currPeopleTotal;
-        inputPeopleActive = true;
-
-        if (parseInt(currPeopleTotal) === 0) {
-            inputPeopleTotal.style.borderColor = 'red';
-            inputPeopleTotal.style.outline = 'none';
-            inputPeopleTotal.style.borderRadius = '5px';
-        } else if (parseInt(currPeopleTotal) > 0) {
-            inputPeopleTotal.style.borderColor = 'green';
-            inputPeopleTotal.style.outline = 'none';
-            inputPeopleTotal.style.borderRadius = '5px';
+        if (currBillTotal.match(regex) === null) {
+            currBillTotal = currBillTotal + '.00';
+            billResult.innerText = '$' + currBillTotal;
         }
     } else {
         checkCalculator();
     }
 }
 
-
+const handlePeopleInput = () => {
+    
+    currPeopleTotal = inputPeopleTotal.value;
+    
+    if (inputPeopleTotal !== '') {
+        
+        inputPeopleTotal.innerText = '$' + currPeopleTotal;
+        inputPeopleActive = true;
+    
+        // if (parseInt(currPeopleTotal) === 0) {
+        //     inputPeopleTotal.style.borderColor = 'red';
+        //     inputPeopleTotal.style.outline = 'none';
+        //     inputPeopleTotal.style.borderRadius = '5px';
+        // } else if (parseInt(currPeopleTotal) > 0) {
+        //     inputPeopleTotal.style.borderColor = 'green';
+        //     inputPeopleTotal.style.outline = 'none';
+        //     inputPeopleTotal.style.borderRadius = '5px';
+        // }         
+    } else {
+        checkCalculator();
+    }
+}
+        
 handlePeopleInput();
-
-
+checkCalculator();
+        
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        tipPercentage = button.dataset.percent;
+        handleTipInput();
+    });
+});
 window.addEventListener('load', handleBillInput);
 inputBillTotal.addEventListener('input', handleBillInput);
 inputPeopleTotal.addEventListener('input', handlePeopleInput);
-
-
 // customTip.addEventListener('input', handleTipInput);
