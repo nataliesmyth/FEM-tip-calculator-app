@@ -170,7 +170,7 @@ body {
 
 .tip-percentage:hover,
 .tip-percentage:focus {
-    background-color: hsl(var(--clr-bg-input));
+    background-color: hsl(var(--clr-primary));
     color: hsl(var(--clr-dark-cyan));
 }
 
@@ -217,4 +217,10 @@ body {
     background-color: hsl(var(--clr-pale-cyan));
     border-color: transparent;
     border-radius: 5px;
+}
+
+@media (min-width: 30rem) {
+    .tip-percentage {
+        font-weight: var(--fw-bold);
+    }
 }
