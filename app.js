@@ -139,6 +139,8 @@ const handleResetBtn = () => {
     inputPeopleTotal.innerText = '';
     inputBillTotal.innerText = '0';
 
+    inputPeopleTotal.style.borderColor = 'transparent';
+
 ;}
 
 // handlePeopleInput();
