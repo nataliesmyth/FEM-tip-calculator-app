@@ -11,6 +11,8 @@ const inputPeopleTotal = document.getElementById('peopleInput');
 
 const buttons = document.querySelectorAll('.tip-percentage-btn');
 const customTip = document.getElementById('custom-tip');
+const resetBtn = document.getElementById('resetBtn');
+const errorMsg = document.getElementById('error')
 
 let currBillTotal = 0;
 let currPeopleTotal;
@@ -73,7 +75,14 @@ const handleTipInput = () => {
 const handleBillInput = () => {
     let regex = /\.+/g;
     currBillTotal = inputBillTotal.value;
-    billResult.innerText = '$' + currBillTotal;
+    console.log(currBillTotal);
+    if (currBillTotal === '') {
+        billResult.innerText = '$0.00';
+        tipResult.innerText = '$0.00'
+    } else {
+        billResult.innerText = '$' + currBillTotal;
+        handlePeopleInput();
+    }
     if (inputBillTotal !== '') {
         inputBillActive = true;
         inputPeopleActive = true;
@@ -85,31 +94,54 @@ const handleBillInput = () => {
         checkCalculator();
     }
 }
-
+const isTotalPeopleZero = function() {
+    if (parseInt(currPeopleTotal) === 0 || currPeopleTotal === '') {
+        inputPeopleTotal.style.borderColor = 'red';
+        inputPeopleTotal.style.outline = 'none';
+        inputPeopleTotal.style.borderRadius = '5px';
+        errorMsg.style.visibility = 'visible'
+    }  else {
+        inputPeopleTotal.style.borderColor = 'green';
+        inputPeopleTotal.style.outline = 'none';
+        inputPeopleTotal.style.borderRadius = '5px';
+        errorMsg.style.visibility = 'hidden'
+    }
+}
 const handlePeopleInput = () => {
-    
     currPeopleTotal = inputPeopleTotal.value;
-    
-    if (inputPeopleTotal !== '') {
+    isTotalPeopleZero();       
+        if (inputPeopleTotal !== '') {
         
-        inputPeopleTotal.innerText = '$' + currPeopleTotal;
+        inputPeopleTotal.innerText = currPeopleTotal;
         inputPeopleActive = true;
     
-        // if (parseInt(currPeopleTotal) === 0) {
-        //     inputPeopleTotal.style.borderColor = 'red';
-        //     inputPeopleTotal.style.outline = 'none';
-        //     inputPeopleTotal.style.borderRadius = '5px';
-        // } else if (parseInt(currPeopleTotal) > 0) {
-        //     inputPeopleTotal.style.borderColor = 'green';
-        //     inputPeopleTotal.style.outline = 'none';
-        //     inputPeopleTotal.style.borderRadius = '5px';
-        // }         
     } else {
         checkCalculator();
     }
 }
-        
-handlePeopleInput();
+
+const handleResetBtn = () => {
+    console.log('reset button clicked!!!');
+    inputBillActive = false;
+    inputPeopleActive = false;
+    btnActive = false;
+    inputTipActive = false;
+
+    inputBillTotal.value = null;
+    inputPeopleTotal.value = null;
+
+    currBillTotal = '0';
+
+    tipResult.innerText = '$0.00';
+    billResult.innerText = '$0.00';
+
+    console.log(billResult)
+    inputPeopleTotal.innerText = '';
+    inputBillTotal.innerText = '0';
+
+;}
+
+// handlePeopleInput();
 checkCalculator();
         
 buttons.forEach((button) => {
@@ -118,7 +150,9 @@ buttons.forEach((button) => {
         handleTipInput();
     });
 });
+
 window.addEventListener('load', handleBillInput);
 inputBillTotal.addEventListener('input', handleBillInput);
 inputPeopleTotal.addEventListener('input', handlePeopleInput);
+resetBtn.addEventListener('click', handleResetBtn);
 // customTip.addEventListener('input', handleTipInput);

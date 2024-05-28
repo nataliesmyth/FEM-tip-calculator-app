@@ -28,7 +28,7 @@
     <div class="container">
       <form class="form">
         <label class="label" for="bill">Bill</label>
-        <input type="text" min="1" step="any" placeholder="" class="input" id="billInput">
+        <input type="text" step="any" placeholder="0" class="input" id="billInput">
         <label class="label" for="selectTip">Select Tip %</label>
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="5">5%</button>
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="10">10%</button>
@@ -36,8 +36,11 @@
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="25">25%</button>
         <button type="button" class="tip-percentage tip-percentage-btn" data-percent="50">50%</button>
         <input type="text" class="tip-percentage input" id="custom-tip" placeholder="Custom">
-        <label class="label" for="numberOfPeople">Number of People</label>
-        <input type="number" min="0" step="any" class="input" id="peopleInput">
+        <div class="num-people-labels">
+          <label class="label" for="numberOfPeople">Number of People</label>
+          <label class="error" id="error">Can't be zero</label>
+        </div>
+        <input type="number" min="0" step="any" class="input" id="peopleInput" placeholder="0">
       </form>
         
       <div class="result">
@@ -48,7 +51,7 @@
           <small class="small">/ person</small>
         </div>
         
-        <button class="reset">RESET</button>
+        <button id="resetBtn" class="reset">RESET</button>
       </div>
     </div>
   </main>
