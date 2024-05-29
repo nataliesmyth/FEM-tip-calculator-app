@@ -224,7 +224,7 @@ button,
 
 .span {
     color: hsl(var(--clr-pale-cyan));
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 .small {
@@ -250,5 +250,26 @@ button,
 
     .tip-percentage {
         font-weight: var(--fw-bold);
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        width: 920px;
+        height: 481px;
+    }
+
+    .container > * {
+        width: 50%;
+        height: 100%;
+        margin: 1em;
+    }
+
+    .span {
+        font-size: 3rem;
     }
 }
