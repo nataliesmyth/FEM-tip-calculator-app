@@ -96,12 +96,12 @@ const handleBillInput = () => {
 }
 const isTotalPeopleZero = function() {
     if (parseInt(currPeopleTotal) === 0 || currPeopleTotal === '') {
-        inputPeopleTotal.style.borderColor = 'red';
+        inputPeopleTotal.style.border = '3px solid red';
         inputPeopleTotal.style.outline = 'none';
         inputPeopleTotal.style.borderRadius = '5px';
         errorMsg.style.visibility = 'visible'
     }  else {
-        inputPeopleTotal.style.borderColor = 'green';
+        inputPeopleTotal.style.border = '3px solid hsl(var(--clr-primary))';
         inputPeopleTotal.style.outline = 'none';
         inputPeopleTotal.style.borderRadius = '5px';
         errorMsg.style.visibility = 'hidden'

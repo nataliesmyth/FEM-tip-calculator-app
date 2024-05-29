@@ -7,6 +7,7 @@
     --clr-custom-text: 180 18 40;
     --clr-pale-cyan: 184 19 68;
     --clr-white: 0 0 100;
+    --clr-inactive-btn: 183 78 24;
 
     --ff-primary: 'Space Mono', monospace;
     --fs-form: 1.5rem;
@@ -147,7 +148,7 @@ body {
     font-weight: var(--fw-bold);
     text-align: right;
     width: 100%;
-    height: 48px;
+    height: 3rem;
     outline: none;
 }
 
@@ -169,7 +170,7 @@ body {
 
 
 .input:hover {
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     outline: none;
 }
 
@@ -181,7 +182,7 @@ body {
     background-color: hsl(var(--clr-dark-cyan));
     color: hsl(var(--clr-white));
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     font-size: 1.5rem;
     margin: .25em;
     padding: .45em 2em;
@@ -213,7 +214,7 @@ button,
     color: hsl(var(--clr-white));
     margin-block-start: 1em;
     padding: 1em;
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 
 .text > * {
@@ -235,17 +236,17 @@ button,
     background-color: hsl(var(--clr-pale-cyan));
     color: hsl(var(--clr-dark-cyan));
     border-color: transparent;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     font-size: 1.25rem;
     font-weight: var(--fw-bold);
     width: 100%;
-    height: 48px;
+    height: 3rem;
 }
 
 @media (min-width: 30rem) {
 
     .input:hover {
-        border-color: hsl(var(--clr-primary));
+        border: 3px solid hsl(var(--clr-primary));
     }
 
     .tip-percentage {
@@ -253,14 +254,15 @@ button,
     }
 }
 
-@media (min-width: 1440px) {
+/* 1000px */
+@media (min-width: 62.5rem) {
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 20px;
-        width: 920px;
-        height: 481px;
+        border-radius: 1.25rem;
+        width: 57.5rem;
+        height: 30.0625rem;
     }
 
     .container > * {
@@ -269,7 +271,36 @@ button,
         margin: 1em;
     }
 
+    #custom-tip:hover {
+        /* background-color: red; */
+        border: 3px solid hsl(var(--clr-primary));
+        padding: 0 0.375em 0 0;
+    }
+
     .span {
+        color: hsl(var(--clr-primary));
         font-size: 3rem;
+        font-weight: var(--fw-bold);
+    }
+
+    .result {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        padding: 2em;
+    }
+
+    .text {
+        width: 100%;
+    }
+
+    .reset {
+        background-color: hsl(var(--clr-inactive-btn));
+        color: hsl(var(--clr-dark-cyan));
+    }
+
+    .reset:hover {
+        background-color: hsl(var(--clr-primary));
     }
 }
