@@ -93,6 +93,10 @@ textarea:not([rows]) {
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: hsl(var(--clr-background));
     color: hsl(var(--clr-white));
     font-family: var(--ff-primary);
